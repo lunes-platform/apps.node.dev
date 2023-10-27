@@ -4,14 +4,10 @@
 import type { TFunction, TOptions } from '../types.js';
 import type { LinkOption } from './types.js';
 
-import { createCustom, createDev, createOwn } from './development.js';
-import { prodChains, prodRelayKusama, prodRelayPolkadot } from './production.js';
-import { testChains, testRelayRococo, testRelayWestend } from './testing.js';
-import { expandEndpoints } from './util.js';
+import { chainsLunesPNG } from '../ui/logos/chains/generated/lunesPNG.js';
 
 export { CUSTOM_ENDPOINT_KEY } from './development.js';
-export * from './production.js';
-export * from './testing.js';
+export * from './productionLunes.js';
 
 function defaultT (keyOrText: string, text?: string | TOptions, options?: TOptions): string {
   return (
@@ -21,77 +17,19 @@ function defaultT (keyOrText: string, text?: string | TOptions, options?: TOptio
   );
 }
 
-export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, withSort = true): LinkOption[] {
+export function createWsEndpoints (t: TFunction = defaultT): LinkOption[] {
   return [
-    ...createCustom(t),
     {
-      isDisabled: false,
+      isDisabled: true,
       isHeader: true,
       isSpaced: true,
-      text: t('rpc.header.polkadot.relay', 'Polkadot & parachains', { ns: 'apps-config' }),
+      text: t('rpc.dev.custom.entry', 'Lunes Nightly', { ns: 'apps-config' }),
       textBy: '',
-      ui: {},
+      ui: {
+        color: '#6C38FF',
+        logo: chainsLunesPNG
+      },
       value: ''
-    },
-    ...expandEndpoints(t, [prodRelayPolkadot], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      text: t('rpc.header.kusama.relay', 'Kusama & parachains', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, [prodRelayKusama], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      isSpaced: true,
-      text: t('rpc.header.westend.relay', 'Test Westend & parachains', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, [testRelayWestend], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      text: t('rpc.header.rococo.relay', 'Test Rococo & parachains', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, [testRelayRococo], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      isSpaced: true,
-      text: t('rpc.header.live', 'Live networks', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, prodChains, firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      text: t('rpc.header.test', 'Test networks', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, testChains, firstOnly, withSort),
-    {
-      isDevelopment: true,
-      isDisabled: false,
-      isHeader: true,
-      isSpaced: true,
-      text: t('rpc.header.dev', 'Development', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...createDev(t),
-    ...createOwn(t)
+    },  
   ].filter(({ isDisabled }) => !isDisabled);
 }

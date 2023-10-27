@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from '../types.js';
+import { chainsLunesPNG } from '../ui/logos/chains/generated/lunesPNG.js';
 import type { LinkOption } from './types.js';
 
 export const CUSTOM_ENDPOINT_KEY = 'polkadot-app-custom-endpoints';
@@ -14,29 +15,30 @@ interface EnvWindow {
 }
 
 export function createCustom (t: TFunction): LinkOption[] {
-  const WS_URL = (
-    (typeof process !== 'undefined' ? process.env?.WS_URL : undefined) ||
-    (typeof window !== 'undefined' ? (window as EnvWindow).process_env?.WS_URL : undefined)
-  );
-
-  return WS_URL
-    ? [
+  const WS_URL = process.env?.WS_URL;
+  return [
       {
-        isHeader: true,
+        isHeader: false,
         text: t('rpc.dev.custom', 'Custom environment', { ns: 'apps-config' }),
         textBy: '',
-        ui: {},
+        ui: {
+          color: 'red',
+          logo:chainsLunesPNG
+        },
         value: ''
       },
       {
+        isHeader: true,
         info: 'WS_URL',
         text: t('rpc.dev.custom.entry', 'Custom {{WS_URL}}', { ns: 'apps-config', replace: { WS_URL } }),
-        textBy: WS_URL,
-        ui: {},
-        value: WS_URL
+        textBy: '',
+        ui: {
+          color: 'red',
+          logo:chainsLunesPNG
+        },
+        value: ''
       }
-    ]
-    : [];
+    ];
 }
 
 export function createOwn (t: TFunction): LinkOption[] {
