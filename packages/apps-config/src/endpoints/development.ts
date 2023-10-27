@@ -72,7 +72,8 @@ export function createDev (t: TFunction): LinkOption[] {
       text: t('rpc.dev.local', 'Local Node', { ns: 'apps-config' }),
       textBy: '127.0.0.1:9944',
       ui: {},
-      value: 'ws://127.0.0.1:9944'
+      //value: 'ws://127.0.0.1:9944'
+      value: 'ws://31.220.50.80:9944'
     }
   ];
 }

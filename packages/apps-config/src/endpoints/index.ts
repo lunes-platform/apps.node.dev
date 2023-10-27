@@ -6,7 +6,8 @@ import type { LinkOption } from './types.js';
 
 import { createCustom, createDev, createOwn } from './development.js';
 import { prodChains, prodRelayKusama, prodRelayPolkadot } from './production.js';
-import { testChains, testRelayRococo, testRelayWestend } from './testing.js';
+//import { testChains, testRelayRococo, testRelayWestend } from './testing.js';
+import { testChains } from './testing.js';
 import { expandEndpoints } from './util.js';
 
 export { CUSTOM_ENDPOINT_KEY } from './development.js';
@@ -25,6 +26,7 @@ export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, w
   return [
     ...createCustom(t),
     {
+      //isDisabled: false,
       isDisabled: false,
       isHeader: true,
       isSpaced: true,
@@ -43,25 +45,7 @@ export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, w
       value: ''
     },
     ...expandEndpoints(t, [prodRelayKusama], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      isSpaced: true,
-      text: t('rpc.header.westend.relay', 'Test Westend & parachains', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, [testRelayWestend], firstOnly, withSort),
-    {
-      isDisabled: false,
-      isHeader: true,
-      text: t('rpc.header.rococo.relay', 'Test Rococo & parachains', { ns: 'apps-config' }),
-      textBy: '',
-      ui: {},
-      value: ''
-    },
-    ...expandEndpoints(t, [testRelayRococo], firstOnly, withSort),
+
     {
       isDisabled: false,
       isHeader: true,
