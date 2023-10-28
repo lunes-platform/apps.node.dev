@@ -18,18 +18,18 @@ function defaultT (keyOrText: string, text?: string | TOptions, options?: TOptio
 }
 
 export function createWsEndpoints (t: TFunction = defaultT): LinkOption[] {
-  return [
+  return [   
     {
-      isDisabled: true,
+      isDisabled: false,
       isHeader: true,
       isSpaced: true,
-      text: t('rpc.dev.custom.entry', 'Lunes Nightly', { ns: 'apps-config' }),
+      text: t('rpc.header.polkadot.relay', 'Lunes Nightly', { ns: 'apps-config' }),
       textBy: '',
       ui: {
         color: '#6C38FF',
         logo: chainsLunesPNG
       },
       value: ''
-    },  
+    }
   ].filter(({ isDisabled }) => !isDisabled);
 }
