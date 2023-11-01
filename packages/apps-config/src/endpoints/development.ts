@@ -15,7 +15,7 @@ interface EnvWindow {
 }
 
 export function createCustom (t: TFunction): LinkOption[] {
-  const WS_URL = process.env?.WS_URL?"":"ws://superblock.lunes.io:9944";
+  const WS_URL = process.env?.WS_URL?"":"ws://ws.lunes.io";
   return [
       {
         isHeader: true,
