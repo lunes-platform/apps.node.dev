@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from '../types.js';
-import { chainsLunesPNG } from '../ui/logos/chains/generated/lunesPNG.js';
+import { chainsLunesSVG } from '../ui/logos/chains/generated/lunesSVG.js';
 import type { LinkOption } from './types.js';
 
 export const CUSTOM_ENDPOINT_KEY = 'polkadot-app-custom-endpoints';
@@ -15,28 +15,18 @@ interface EnvWindow {
 }
 
 export function createCustom (t: TFunction): LinkOption[] {
-  const WS_URL = process.env?.WS_URL;
+  const WS_URL = process.env?.WS_URL?"":"ws://superblock.lunes.io:9944";
   return [
-      {
-        isHeader: false,
-        text: t('rpc.dev.custom', 'Custom environment', { ns: 'apps-config' }),
-        textBy: '',
-        ui: {
-          color: 'red',
-          logo:chainsLunesPNG
-        },
-        value: ''
-      },
       {
         isHeader: true,
         info: 'WS_URL',
-        text: t('rpc.dev.custom.entry', 'Custom {{WS_URL}}', { ns: 'apps-config', replace: { WS_URL } }),
+        text: t('rpc.dev.custom.entry', 'Lunes Nightly - Mainnet', { ns: 'apps-config', replace: { WS_URL } }),
         textBy: '',
         ui: {
-          color: 'red',
-          logo:chainsLunesPNG
+          color: '#6C38FF',
+          logo:chainsLunesSVG
         },
-        value: ''
+        value: WS_URL
       }
     ];
 }
