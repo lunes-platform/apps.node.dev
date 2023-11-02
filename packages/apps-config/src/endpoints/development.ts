@@ -21,9 +21,9 @@ export function createCustom (t: TFunction): LinkOption[] {
         isHeader: true,
         info: 'WS_URL',
         text: t('rpc.dev.custom.entry', 'Lunes Nightly - Mainnet', { ns: 'apps-config', replace: { WS_URL } }),
-        textBy: '',
+        textBy: 'Selecionado',
         ui: {
-          color: '#6C38FF',
+          color: '#000',
           logo:chainsLunesSVG
         },
         value: WS_URL

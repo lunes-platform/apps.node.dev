@@ -55,14 +55,7 @@ function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { isChild, 
           <div>{name}</div>
           {isSelected && (isRelay || !!paraId) && (
             <div className='endpointExtra'>
-              {isRelay
-                ? t('Relay chain')
-                : paraId && paraId < 1000
-                  ? t('{{relay}} System', { replace: { relay } })
-                  : paraId && paraId < 2000
-                    ? t('{{relay}} Common', { replace: { relay } })
-                    : t('{{relay}} Parachain', { replace: { relay } })
-              }
+              
             </div>
           )}
         </div>

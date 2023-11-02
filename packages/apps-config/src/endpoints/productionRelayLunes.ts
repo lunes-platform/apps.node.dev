@@ -10,13 +10,13 @@ export const LunesParas: EndpointOption[] = [
     dnslink: 'LunesMainnet',
     paraId: 1000,
     providers: {
-      Dwellir: 'wss://ws.lunes.io',
+      "Lunes Chain": 'wss://ws.lunes.io',
       
     },
     teleport: [-1],
     text: 'Lunes Mainnet',
     ui: {
-      color: '#9469FF',
+      color: '#000',
       logo: chainsLunesSVG
     }
   }
@@ -28,7 +28,7 @@ export const LunesTestParas: EndpointOption[] = [
     paraId: 1000,
     dnslink: 'LunesTestNet',
     providers: {
-      Dwellir: 'wss://testnet-01.lunes.io'
+      "Lunes Chain Testnet": 'wss://testnet-01.lunes.io'
     },
     teleport: [-1],
     text: 'Lunes TestNet',
